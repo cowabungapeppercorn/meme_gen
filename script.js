@@ -61,6 +61,12 @@ window.onload = function(){
     // remove meme
     memeDisplay.addEventListener("click", function(){
         if(event.target.tagName.toLowerCase() === "button"){
+            for(let i = 0; i < savedMemes.length; i++){
+                if(event.target.parentNode.style.backgroundImage === savedMemes[i].background){
+                    savedMemes.splice(i, 1);
+                    window.localStorage.setItem("memes", JSON.stringify(savedMemes));
+                }
+            }
             event.target.parentNode.remove();
         }
     })
