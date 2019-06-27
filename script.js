@@ -2,6 +2,28 @@ window.onload = function(){
 
     const memeForm      = document.getElementById("memeForm");
     const memeDisplay   = document.getElementById("display");
+    let savedMemes      = JSON.parse(window.localStorage.getItem("memes")) || [];
+
+
+    // generate memes from localStorage
+    for(let i = 0; i < savedMemes.length; i++){
+        let newDiv = document.createElement("div");
+        let bottomText = document.createElement("h2");
+        let topText = document.createElement("h2");
+        let removeButton = document.createElement("button");
+        newDiv.className = "meme";
+        topText.className = "topText";
+        bottomText.className = "bottomText";
+        removeButton.className = "removeButton";
+        removeButton.innerText = "X";
+        newDiv.style.backgroundImage = savedMemes[i].background;
+        topText.innerText = savedMemes[i].top;
+        bottomText.innerText = savedMemes[i].bottom;
+        newDiv.appendChild(topText);
+        newDiv.appendChild(bottomText);
+        newDiv.appendChild(removeButton);
+        memeDisplay.appendChild(newDiv);
+    }
 
     // submit new meme
     memeForm.addEventListener("submit", function(){
@@ -26,7 +48,11 @@ window.onload = function(){
         newDiv.appendChild(topText);
         newDiv.appendChild(bottomText);
         newDiv.appendChild(removeButton);
-        memeDisplay.appendChild(newDiv); 
+        memeDisplay.appendChild(newDiv);
+        
+        // save to local storage
+        savedMemes.push({top: topText.innerText, bottom: bottomText.innerText, background: newDiv.style.backgroundImage});
+        window.localStorage.setItem("memes", JSON.stringify(savedMemes));
         
         memeForm.reset();
 
