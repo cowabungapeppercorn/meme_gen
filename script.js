@@ -45,6 +45,8 @@ window.onload = function(){
         topText.innerText               = document.getElementById("newTopText").value;
         bottomText.innerText            = document.getElementById("newBottomText").value;
 
+        newDiv.id = Math.random() * Math.random();
+
         newDiv.appendChild(topText);
         newDiv.appendChild(bottomText);
         newDiv.appendChild(removeButton);
@@ -62,7 +64,7 @@ window.onload = function(){
     memeDisplay.addEventListener("click", function(){
         if(event.target.tagName.toLowerCase() === "button"){
             for(let i = 0; i < savedMemes.length; i++){
-                if(event.target.parentNode.style.backgroundImage === savedMemes[i].background){
+                if(event.target.parentNode.id === savedMemes[i].id){
                     savedMemes.splice(i, 1);
                     window.localStorage.setItem("memes", JSON.stringify(savedMemes));
                 }
