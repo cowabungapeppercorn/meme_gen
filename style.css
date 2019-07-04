@@ -17,7 +17,6 @@ body {
 #footer {
     display: flex;
     justify-content: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -31,7 +30,7 @@ body {
 
 #display .meme {
     height: 350px;
-    width: 250px;
+    width: 450px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -48,19 +47,22 @@ body {
 
 #display .meme .topText {
     top: 0;
+    margin-top: 0;
 }
 
 #display .meme .bottomText {
     bottom: 0;
+    margin-bottom: 0;
 }
 
 #display .meme .removeButton {
     position: absolute;
     top: 0;
     right: 0;
-    height: auto;
+    height: 28px;
     width: auto;
     background-color: orangered;
     text-align: center;
     font-weight: bold;
+    border-radius: 5px;
 }
